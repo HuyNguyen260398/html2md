@@ -1,0 +1,67 @@
+html to markdown
+	
+    1. description:
+    
+        a webapp to get content from a website, convert to a humand and ai readable markdown, and redeploy the markdown as the new view of the page
+
+    2. design:
+    
+        - the ui must have a programatic theme, refer theme of this site: https://skillsmp.com/
+        
+        - color theme must have 2 main color theme: dark and light from github theme
+
+        - color theme can be toggled
+        
+        - the UI must be responsive
+        
+        - 1 main page:
+        
+            - input box (for user to input site url)
+            
+            - extract button (get / craw raw data of the page)
+            
+            - pannel 1 (preview raw data craw from the site)
+            
+            - convert button (start converting raw data to markdown)
+            
+            - pannel 2 (preview markdown results)
+            
+            - download button (download the created markdown)
+        
+    3. framework:
+
+        - front-end: vuejs
+        
+        - back-end: fast-api
+        
+    4. function:
+    
+        - user provide a website url
+        
+        - get or craw the raw content of the site
+        
+        - preview the raw data in a pannel
+        
+        - convert the raw content to human and ai readable markdown file
+        
+        - preview the markdown content in a second pannel
+        
+        - allow user to download the markdown file
+        
+    5. your tasks are:
+    
+        - use the ui-ux-pro-max skill to develop the front-end
+        
+        - use the fastapi skill to develop the back-end
+        
+        - use the create-implementation-plan to create plans:
+        
+            - plan for front-end development
+            
+            - plan for back-end development
+        
+        - use the create-readme to create readme file for this project
+        
+        - create other neccessary files: .gitignore, license, etc
+        
+        - create plans first, do not start implement imediately 
