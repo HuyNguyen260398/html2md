@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import AppHeader from './components/AppHeader.vue'
 import UrlInput from './components/UrlInput.vue'
 import ContentPanel from './components/ContentPanel.vue'
@@ -7,6 +7,23 @@ import ActionBar from './components/ActionBar.vue'
 import { useApi } from './composables/useApi.js'
 
 const { loading, error: apiError, extractContent, convertToMarkdown } = useApi()
+
+onMounted(() => {
+  const loader = document.getElementById('page-loader')
+  if (!loader) return
+  // Snap the indeterminate bar to full width, then fade the overlay out
+  const bar = loader.querySelector('.loader-bar')
+  if (bar) {
+    bar.style.animation = 'none'
+    bar.style.transition = 'left 0.18s ease-out, width 0.18s ease-out'
+    bar.style.left = '0'
+    bar.style.width = '100%'
+  }
+  setTimeout(() => {
+    loader.classList.add('fade-out')
+    setTimeout(() => loader.remove(), 320)
+  }, 180)
+})
 
 const rawHtml = ref('')
 const markdownText = ref('')
