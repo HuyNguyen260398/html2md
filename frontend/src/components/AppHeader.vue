@@ -37,7 +37,7 @@ const { isDark, toggleTheme } = useTheme()
         <span
           class="font-mono text-base font-semibold tracking-tight truncate"
           style="color: var(--color-fg-default)"
-        >html2md</span>
+        >html-2-md</span>
         <span
           class="hidden sm:inline text-sm"
           style="color: var(--color-fg-muted)"

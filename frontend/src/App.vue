@@ -156,7 +156,7 @@ function handleDownload() {
         color: var(--color-fg-muted);
       "
     >
-      html2md &mdash; built with Vue 3 &amp; FastAPI
+      html-2-md &mdash; built with Vue 3 &amp; FastAPI
     </footer>
   </div>
 </template>
