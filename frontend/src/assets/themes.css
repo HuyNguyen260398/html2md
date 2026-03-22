@@ -1,0 +1,113 @@
+/* ──────────────────────────────────────────────────────────
+   GitHub Light (default) — :root
+   ────────────────────────────────────────────────────────── */
+:root {
+  --color-canvas-default:    #ffffff;
+  --color-canvas-subtle:     #f6f8fa;
+  --color-border-default:    #d0d7de;
+  --color-fg-default:        #24292f;
+  --color-fg-muted:          #57606a;
+  --color-accent-fg:         #0969da;
+  --color-accent-emphasis:   #0969da;
+  --color-btn-bg:            #f6f8fa;
+  --color-btn-border:        rgba(31, 35, 40, 0.15);
+  --color-btn-hover-bg:      #f3f4f6;
+  --color-danger-fg:         #cf222e;
+  --color-success-fg:        #1a7f37;
+}
+
+/* ──────────────────────────────────────────────────────────
+   GitHub Dark — .dark
+   ────────────────────────────────────────────────────────── */
+.dark {
+  --color-canvas-default:    #0d1117;
+  --color-canvas-subtle:     #161b22;
+  --color-border-default:    #30363d;
+  --color-fg-default:        #e6edf3;
+  --color-fg-muted:          #8b949e;
+  --color-accent-fg:         #58a6ff;
+  --color-accent-emphasis:   #1f6feb;
+  --color-btn-bg:            #21262d;
+  --color-btn-border:        rgba(240, 246, 252, 0.1);
+  --color-btn-hover-bg:      #30363d;
+  --color-danger-fg:         #f85149;
+  --color-success-fg:        #3fb950;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Global base styles
+   ────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  background-color: var(--color-canvas-default);
+  color: var(--color-fg-default);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+/* Focus rings — WCAG AA visible focus */
+:focus-visible {
+  outline: 2px solid var(--color-accent-fg);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Scrollbar styling (code panels) */
+.gh-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-default) transparent;
+}
+.gh-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.gh-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.gh-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-border-default);
+  border-radius: 3px;
+}
+
+/* Reduced-motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   Button hover states
+   ────────────────────────────────────────────────────────── */
+.gh-btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-btn-hover-bg);
+  color: var(--color-fg-default);
+}
+
+.gh-btn-primary:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+/* Input focus */
+input[type="url"]:focus {
+  outline: 2px solid var(--color-accent-fg);
+  outline-offset: 0;
+  border-color: var(--color-accent-fg);
+}
+
