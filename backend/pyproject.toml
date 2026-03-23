@@ -1,5 +1,5 @@
 [project]
-name = "html2md-backend"
+name = "html-2-md-backend"
 version = "1.0.0"
 description = "FastAPI backend that converts URLs to Markdown"
 requires-python = ">=3.12"

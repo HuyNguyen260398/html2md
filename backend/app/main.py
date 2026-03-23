@@ -9,7 +9,7 @@ from app.models import ApiResponse, HealthResponse
 from app.routers.convert import router as convert_router
 from app.routers.extract import router as extract_router
 
-app = FastAPI(title="html2md API", version="1.0.0")
+app = FastAPI(title="html-2-md API", version="1.0.0")
 
 # ---------------------------------------------------------------------------
 # CORS middleware

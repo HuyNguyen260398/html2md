@@ -1,4 +1,4 @@
-# html2md — Backend API
+# html-2-md — Backend API
 
 A stateless **FastAPI** service that accepts a public URL, fetches the raw HTML, and returns clean Markdown. Used by the Vue.js front-end but can be called directly as a REST API.
 

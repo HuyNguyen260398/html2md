@@ -1,9 +1,9 @@
 ---
-goal: Build the Vue.js 3 front-end for the html2md web application
+goal: Build the Vue.js 3 front-end for the html-2-md web application
 version: 1.0
 date_created: 2026-03-20
 last_updated: 2026-03-20
-owner: html2md Team
+owner: html-2-md Team
 status: 'Planned'
 tags: [feature, frontend, vue, ui-ux]
 ---
@@ -12,7 +12,7 @@ tags: [feature, frontend, vue, ui-ux]
 
 ![Status: Planned](https://img.shields.io/badge/status-Planned-blue)
 
-This plan describes the complete implementation of the Vue.js 3 front-end for **html2md** — a web application that extracts raw content from any URL, converts it to human- and AI-readable Markdown, and lets the user download the result. The UI follows a GitHub-flavored dark/light theme with a programmatic developer-tool aesthetic inspired by [skillsmp.com](https://skillsmp.com/).
+This plan describes the complete implementation of the Vue.js 3 front-end for **html-2-md** — a web application that extracts raw content from any URL, converts it to human- and AI-readable Markdown, and lets the user download the result. The UI follows a GitHub-flavored dark/light theme with a programmatic developer-tool aesthetic inspired by [skillsmp.com](https://skillsmp.com/).
 
 ---
 
@@ -103,7 +103,7 @@ This plan describes the complete implementation of the Vue.js 3 front-end for **
 
 | Task | Description | Completed | Date |
 |------|-------------|-----------|------|
-| TASK-013 | Create `src/components/AppHeader.vue`: shows the app logo/title ("html2md"), a subtitle, and the light/dark toggle button (sun/moon SVG icon, `aria-label="Toggle theme"`). Uses `useTheme` composable. | | |
+| TASK-013 | Create `src/components/AppHeader.vue`: shows the app logo/title ("html-2-md"), a subtitle, and the light/dark toggle button (sun/moon SVG icon, `aria-label="Toggle theme"`). Uses `useTheme` composable. | | |
 | TASK-014 | Create `src/components/UrlInput.vue`: labelled text input (`type="url"`, `autocomplete="url"`, `placeholder="https://example.com"`), inline validation (show error below on blur if invalid URL), and an "Extract" primary button. Emits `extract(url)`. | | |
 | TASK-015 | Create `src/components/ContentPanel.vue`: generic scrollable code panel (prop: `label`, `content`, `language`). Renders content inside a `<pre><code>` block with monospace font, line-wrap, and scrollbar. Shows an empty-state placeholder when `content` is falsy. | | |
 | TASK-016 | Create `src/components/ActionBar.vue`: contains "Convert" and "Download" buttons. "Convert" disabled when no raw content; "Download" disabled when no markdown content. Emits `convert` and `download`. Buttons show spinner (`animate-spin`) while loading. | | |
