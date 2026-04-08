@@ -1,4 +1,4 @@
-# html2md
+# html-2-md
 
 A web application that fetches the content of any website, converts it to clean human- and AI-readable Markdown, and lets you download the result.
 
@@ -35,7 +35,7 @@ Built with **Vue 3** on the front-end and **FastAPI** on the back-end. Designed 
 ## Project Structure
 
 ```
-html2md/
+html-2-md/
 ├── frontend/          # Vue 3 SPA
 │   ├── src/
 │   │   ├── assets/    # Global CSS (theme tokens)

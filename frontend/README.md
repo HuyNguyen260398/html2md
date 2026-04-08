@@ -1,4 +1,4 @@
-# html2md — Frontend
+# html-2-md — Frontend
 
 Vue 3 + Vite single-page application that extracts raw content from any URL, converts it to Markdown, and lets you download the result. Styled with a GitHub-flavored dark/light theme.
 

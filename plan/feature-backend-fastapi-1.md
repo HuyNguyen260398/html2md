@@ -1,9 +1,9 @@
 ---
-goal: Build the FastAPI back-end for the html2md web application
+goal: Build the FastAPI back-end for the html-2-md web application
 version: 1.0
 date_created: 2026-03-20
 last_updated: 2026-03-20
-owner: html2md Team
+owner: html-2-md Team
 status: 'Planned'
 tags: [feature, backend, fastapi, python]
 ---
@@ -12,7 +12,7 @@ tags: [feature, backend, fastapi, python]
 
 ![Status: Planned](https://img.shields.io/badge/status-Planned-blue)
 
-This plan describes the complete implementation of the **html2md** FastAPI back-end — a Python API that accepts a URL, fetches the raw HTML content, converts it to clean Markdown, and returns the result for display and download by the Vue.js front-end.
+This plan describes the complete implementation of the **html-2-md** FastAPI back-end — a Python API that accepts a URL, fetches the raw HTML content, converts it to clean Markdown, and returns the result for display and download by the Vue.js front-end.
 
 ---
 
@@ -77,7 +77,7 @@ This plan describes the complete implementation of the **html2md** FastAPI back-
 
 | Task | Description | Completed | Date |
 |------|-------------|-----------|------|
-| TASK-017 | In `app/main.py`: instantiate `FastAPI(title="html2md API", version="1.0.0")` | | |
+| TASK-017 | In `app/main.py`: instantiate `FastAPI(title="html-2-md API", version="1.0.0")` | | |
 | TASK-018 | Add `CORSMiddleware` with origins from `Settings.allowed_origins`, `allow_methods=["GET","POST"]`, `allow_headers=["Content-Type"]` | | |
 | TASK-019 | Register exception handlers for `ExtractError`, `ConvertError`, and generic `Exception` — all return `{"data": null, "error": "<message>"}` with appropriate HTTP status codes | | |
 | TASK-020 | Add `GET /health` endpoint returning `{"data": {"status": "ok"}, "error": null}` with return type `HealthResponse` | | |
