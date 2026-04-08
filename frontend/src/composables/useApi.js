@@ -15,9 +15,13 @@ export function useApi() {
     error.value = null
     try {
       const { data } = await api.post('/extract', { url })
-      return data
+      if (data.error) {
+        error.value = data.error
+        return null
+      }
+      return data.data
     } catch (err) {
-      error.value = err.response?.data?.detail ?? err.message ?? 'Failed to extract content.'
+      error.value = err.response?.data?.error ?? err.message ?? 'Failed to extract content.'
       return null
     } finally {
       loading.value = false
@@ -29,9 +33,13 @@ export function useApi() {
     error.value = null
     try {
       const { data } = await api.post('/convert', { html })
-      return data
+      if (data.error) {
+        error.value = data.error
+        return null
+      }
+      return data.data
     } catch (err) {
-      error.value = err.response?.data?.detail ?? err.message ?? 'Failed to convert to Markdown.'
+      error.value = err.response?.data?.error ?? err.message ?? 'Failed to convert to Markdown.'
       return null
     } finally {
       loading.value = false

@@ -4,6 +4,9 @@ import html2text
 from bs4 import BeautifulSoup, Comment
 
 
+_PRESERVE_WHITESPACE_TAGS = {"pre", "code", "textarea"}
+
+
 def _clean_html(html: str) -> str:
     """Strip scripts, styles, and other noisy tags before conversion."""
     soup = BeautifulSoup(html, "lxml")
@@ -15,6 +18,18 @@ def _clean_html(html: str) -> str:
     # Remove HTML comments.
     for comment in soup.find_all(string=lambda text: isinstance(text, Comment)):
         comment.extract()
+
+    # Collapse inline newlines inside text nodes (outside pre/code blocks).
+    # HTML rendering ignores these — they become spaces — but html2text would
+    # otherwise pass them through as literal \n in the Markdown output.
+    for node in soup.find_all(string=True):
+        if isinstance(node, Comment):
+            continue
+        if any(p.name in _PRESERVE_WHITESPACE_TAGS for p in node.parents):
+            continue
+        normalized = re.sub(r"\s*\n\s*", " ", str(node))
+        if normalized != str(node):
+            node.replace_with(normalized)
 
     return str(soup)
 

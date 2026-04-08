@@ -3,6 +3,7 @@ import socket
 
 import httpx
 from bs4 import BeautifulSoup
+from readability import Document
 
 from app.config import Settings
 from app.exceptions import ExtractError
@@ -50,11 +51,55 @@ def _resolve_and_validate_host(url: str) -> None:
             )
 
 
-def _extract_title(html: str) -> str | None:
-    """Extract the <title> text from an HTML document."""
-    soup = BeautifulSoup(html, "lxml")
-    tag = soup.find("title")
-    return tag.get_text(strip=True) if tag else None
+def _extract_author(raw_html: str) -> str | None:
+    """Extract the author name from common meta tag patterns."""
+    soup = BeautifulSoup(raw_html, "lxml")
+    candidates = [
+        {"name": "author"},
+        {"property": "article:author"},
+        {"property": "og:article:author"},
+        {"name": "twitter:creator"},
+    ]
+    for attrs in candidates:
+        tag = soup.find("meta", attrs)
+        if tag and tag.get("content"):
+            value = tag["content"].strip().lstrip("@")
+            # Skip values that look like profile URLs rather than names.
+            if value and not value.startswith("http"):
+                return value
+    return None
+
+
+def _extract_main_content(html: str) -> tuple[str, str | None]:
+    """Use Mozilla Readability to isolate the main article body.
+
+    Prepends the page title (h1) and author byline so they appear in the
+    converted Markdown.
+
+    Returns:
+        (main_html, page_title)
+    """
+    doc = Document(html)
+    title = doc.title() or None
+    author = _extract_author(html)
+    main_html = doc.summary(html_partial=False)
+
+    # Inject title and author at the top of <body>.
+    soup = BeautifulSoup(main_html, "lxml")
+    body = soup.find("body")
+    if body:
+        if author:
+            byline = soup.new_tag("p")
+            em = soup.new_tag("em")
+            em.string = f"By {author}"
+            byline.append(em)
+            body.insert(0, byline)
+        if title:
+            h1 = soup.new_tag("h1")
+            h1.string = title
+            body.insert(0, h1)
+
+    return str(soup), title
 
 
 async def fetch_html(url: str, settings: Settings) -> tuple[str, str | None]:
@@ -125,5 +170,4 @@ async def fetch_html(url: str, settings: Settings) -> tuple[str, str | None]:
         ) from exc
 
     html_content = b"".join(chunks).decode(errors="replace")
-    title = _extract_title(html_content)
-    return html_content, title
+    return _extract_main_content(html_content)
