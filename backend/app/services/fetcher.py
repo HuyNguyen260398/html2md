@@ -3,7 +3,7 @@ import socket
 
 import httpx
 from bs4 import BeautifulSoup
-from readability import Document
+from readability import Document # type: ignore
 
 from app.config import Settings
 from app.exceptions import ExtractError
